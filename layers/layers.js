@@ -1,5 +1,5 @@
 ol.proj.proj4.register(proj4);
-//ol.proj.get("EPSG:4326").setExtent([116.287591, -8.892173, 116.291906, -8.889054]);
+//ol.proj.get("EPSG:4326").setExtent([-20037508.342789, -20037508.342789, 20037508.342789, 20037508.342789]);
 var wms_layers = [];
 
 
@@ -34,30 +34,12 @@ var lyr_fixbidang_1 = new ol.layer.Vector({
     <img src="styles/legend/fixbidang_1_3.png" /> Other Land<br />\
     <img src="styles/legend/fixbidang_1_4.png" /> <br />'
         });
-var format_kontur_2 = new ol.format.GeoJSON();
-var features_kontur_2 = format_kontur_2.readFeatures(json_kontur_2, 
-            {dataProjection: 'EPSG:4326', featureProjection: 'EPSG:4326'});
-var jsonSource_kontur_2 = new ol.source.Vector({
-    attributions: ' ',
-});
-jsonSource_kontur_2.addFeatures(features_kontur_2);
-var lyr_kontur_2 = new ol.layer.Vector({
-                declutter: false,
-                source:jsonSource_kontur_2, 
-                style: style_kontur_2,
-                popuplayertitle: "kontur",
-                interactive: true,
-                title: '<img src="styles/legend/kontur_2.png" /> kontur'
-            });
 
-lyr_SsateliteGoogle_0.setVisible(true);lyr_fixbidang_1.setVisible(true);lyr_kontur_2.setVisible(true);
-var layersList = [lyr_SsateliteGoogle_0,lyr_fixbidang_1,lyr_kontur_2];
+lyr_SsateliteGoogle_0.setVisible(true);lyr_fixbidang_1.setVisible(true);
+var layersList = [lyr_SsateliteGoogle_0,lyr_fixbidang_1];
 lyr_fixbidang_1.set('fieldAliases', {'Polygon_id': 'Polygon_id', 'CLASSNAME': 'CLASSNAME', 'STRING': 'STRING', 'AREA': 'AREA', });
-lyr_kontur_2.set('fieldAliases', {'CENTER': 'CENTER', 'CENTROID': 'CENTROID', 'ELEVATION': 'ELEVATION', 'STRING': 'STRING', });
 lyr_fixbidang_1.set('fieldImages', {'Polygon_id': 'TextEdit', 'CLASSNAME': 'TextEdit', 'STRING': 'TextEdit', 'AREA': 'TextEdit', });
-lyr_kontur_2.set('fieldImages', {'CENTER': '', 'CENTROID': '', 'ELEVATION': '', 'STRING': '', });
 lyr_fixbidang_1.set('fieldLabels', {'Polygon_id': 'no label', 'CLASSNAME': 'no label', 'STRING': 'no label', 'AREA': 'no label', });
-lyr_kontur_2.set('fieldLabels', {'CENTER': 'no label', 'CENTROID': 'no label', 'ELEVATION': 'no label', 'STRING': 'no label', });
-lyr_kontur_2.on('precompose', function(evt) {
+lyr_fixbidang_1.on('precompose', function(evt) {
     evt.context.globalCompositeOperation = 'normal';
 });
